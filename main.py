@@ -10,7 +10,7 @@ def main():
 def users():
     users = manage_json.read_json()['users']
     for user in users:
-        print(f"{user['id']} - {user['name']}")
+        print(f"{user['codigo']} - {user['name']}")
 
 @main.command()
 @click.option('--codigo', prompt = 'Código', help = 'Nombre del usuario', type = int)
@@ -39,17 +39,17 @@ def add(context, codigo, name, lastname):
 @click.argument('id', type = int)
 def user(id):
     data = manage_json.read_json()
-    user = next((x for x in data['users'] if x['id'] == id), None)
+    user = next((x for x in data['users'] if x['codigo'] == id), None)
     if user is None: 
         print(f"El usuario no existe")
     else:
-        print(f"{user['id']} - {user['name']}")
+        print(f"{user['codigo']} - {user['name']}")
 
 @main.command()
 @click.argument('id', type = int)
 def delete(id):
     data = manage_json.read_json()
-    user = next((x for x in data['users'] if x['id'] == id), None)
+    user = next((x for x in data['users'] if x['codigo'] == id), None)
     if user is None: 
         print(f"El usuario no existe")
     else:
